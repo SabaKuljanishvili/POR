@@ -9,7 +9,7 @@
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-// Enhanced Animation Library
+
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -164,6 +164,18 @@
   }
 }
 
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 // About Section
 .about {
   background: white;
@@ -283,7 +295,8 @@
 
   @for $i from 1 through 5 {
     &:nth-child(#{$i}) {
-      animation-delay: 0.7s + ($i * 0.1s);
+      animation-delay: #{0.7 + ($i * 0.1)}s;
+
     }
   }
   
@@ -329,8 +342,7 @@
   border-radius: 0.25rem;
   position: relative;
   width: 0;
-  animation: expandWidth 1.5s ease-out forwards;
-  animation-delay: 1s;
+  animation:none;
 
   &::after {
     content: '';
@@ -438,7 +450,7 @@
 
   @for $i from 1 through 12 {
     &:nth-child(#{$i}) {
-      animation-delay: 0.2s + ($i * 0.05s);
+      animation-delay: #{0.2 + ($i * 0.05)}s;
     }
   }
 
