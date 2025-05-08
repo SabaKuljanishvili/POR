@@ -1,9 +1,9 @@
 :root {
-    --primary: #3b82f6;  // blue-500
-    --primary-dark: #2563eb; // blue-600
-    --dark: #1e293b; // slate-800
-    --secondary: #64748b; // slate-500
-    --light: #f1f5f9; // slate-100
+    --primary: #3b82f6;  
+    --primary-dark: #2563eb; 
+    --dark: #1e293b; 
+    --secondary: #64748b; 
+    --light: #f1f5f9; 
     --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -359,7 +359,6 @@
   }
 }
 
-// Tech Stack Section
 .tech-stack {
   background: linear-gradient(-45deg, #f1f5f9, #e2e8f0, #dbeafe, #eff6ff);
   background-size: 400% 400%;
@@ -540,7 +539,6 @@
   }
 }
 
-// Animation classes for scroll-triggered animations
 .animate-on-scroll {
   opacity: 0;
   transform: translateY(20px);
@@ -584,7 +582,6 @@
   }
 }
 
-// Button animations
 .animated-button {
   position: relative;
   padding: 0.75rem 1.5rem;
@@ -625,7 +622,6 @@
   }
 }
 
-// Image animations
 .animated-image {
   position: relative;
   overflow: hidden;

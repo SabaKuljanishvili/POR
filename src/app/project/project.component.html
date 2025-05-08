@@ -1,0 +1,45 @@
+   <section id="projects" class="projects">
+    <div class="container">
+      <div class="animated-circle circle-1"></div>
+      <div class="animated-circle circle-2"></div>
+      <div class="animated-line line-1"></div>
+      <div class="animated-line line-2"></div>
+      
+      <h2 class="section-title">Featured Projects</h2>
+      
+      <div class="projects-grid">
+        <div class="project-card" *ngFor="let project of projects; let i = index">
+          <div class="corner-accent"></div>
+          
+          <div class="image-container">
+            <img [src]="project.image" [alt]="project.title" class="project-img">
+            <div class="image-overlay"></div>
+          </div>
+          
+          <div class="project-info">
+            <h3>{{ project.title }}</h3>
+            <p>{{ project.description }}</p>
+            
+            <div class="project-tags">
+              <span class="tag" *ngFor="let tag of project.tags">{{ tag }}</span>
+            </div>
+            
+            <div class="project-links">
+              <a [href]="project.link" class="btn" target="_blank">
+                <span>View Project</span>
+                <svg class="arrow-icon" viewBox="0 0 24 24">
+                  <path d="M5 12h14M12 5l7 7-7 7"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+          
+          <div class="floating-dots">
+            <span class="dot dot-1"></span>
+            <span class="dot dot-2"></span>
+            <span class="dot dot-3"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
