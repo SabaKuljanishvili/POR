@@ -23,16 +23,15 @@ export class MainComponent {
     { name: 'HTML5', iconClass: 'fab fa-html5' },
     { name: 'CSS3', iconClass: 'fab fa-css3-alt' },
     { name: 'JavaScript', iconClass: 'fab fa-js' },
-    { name: 'React', iconClass: 'fab fa-react' },
+    { name: 'Angular', iconClass: 'fab fa-angular' },
     { name: 'TypeScript', iconClass: 'fas fa-code' },
     { name: 'Bootstrap', iconClass: 'fab fa-bootstrap' },
     { name: 'Git', iconClass: 'fab fa-git-alt' },
     { name: 'GitHub', iconClass: 'fab fa-github' },
     { name: 'GitLab', iconClass: 'fab fa-gitlab' },
     { name: 'Postman', iconClass: 'fas fa-server' },
-    { name: 'ITCRA', iconClass: 'fas fa-code-branch' },
-    { name: 'ARCHLAK', iconClass: 'fas fa-archway' }
-  ];
+    { name: 'Figma', iconClass: 'fab fa-figma' },
+    ];
 
   skills = [
     { name: 'HTML5', level: 95, animated: false },
@@ -43,8 +42,12 @@ export class MainComponent {
   ];
 
   ngAfterViewInit(): void {
+    const aboutSection = document.getElementById('about');
+    if (aboutSection) {
+      aboutSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
     const revealElements = document.querySelectorAll('.reveal');
-  
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -52,14 +55,11 @@ export class MainComponent {
           revealObserver.unobserve(entry.target);
         }
       });
-    }, {
-      threshold: 0.2
-    });
+    }, { threshold: 0.2 });
   
     revealElements.forEach(el => revealObserver.observe(el));
   
     const skillProgressBars = document.querySelectorAll('.skill-progress');
-  
     const skillObserver = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -74,5 +74,4 @@ export class MainComponent {
   
     skillProgressBars.forEach(el => skillObserver.observe(el));
   }
-  
 }

@@ -54,4 +54,11 @@ export class ProjectComponent {
       link: 'https://g-m-s.netlify.app/'
     }
   ];
+
+  ngAfterViewInit(): void {
+    const element = document.getElementById('projects');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
 }
