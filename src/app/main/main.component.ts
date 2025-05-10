@@ -1,6 +1,6 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, ViewportScroller } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-main',
@@ -10,6 +10,10 @@ import { RouterModule } from '@angular/router';
   styleUrl: './main.component.scss'
 })
 export class MainComponent {
+    constructor(
+    private route: ActivatedRoute,
+    private viewportScroller: ViewportScroller
+  ) {}
   about = {
     name: 'Saba Kuljanishvili',
     paragraphs: [
@@ -42,11 +46,19 @@ export class MainComponent {
   ];
 
   ngAfterViewInit(): void {
-    const aboutSection = document.getElementById('about');
-    if (aboutSection) {
-      aboutSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+    this.route.fragment.subscribe(fragment => {
+      if (fragment === 'about') {
+        setTimeout(() => {
+          this.viewportScroller.scrollToAnchor(fragment);
+        }, 0);
+      }
+    });
 
+    this.initRevealAnimations();
+    this.initSkillProgressObserver();
+  }
+
+  private initRevealAnimations(): void {
     const revealElements = document.querySelectorAll('.reveal');
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -56,9 +68,11 @@ export class MainComponent {
         }
       });
     }, { threshold: 0.2 });
-  
+
     revealElements.forEach(el => revealObserver.observe(el));
-  
+  }
+
+  private initSkillProgressObserver(): void {
     const skillProgressBars = document.querySelectorAll('.skill-progress');
     const skillObserver = new IntersectionObserver(entries => {
       entries.forEach(entry => {
@@ -71,7 +85,7 @@ export class MainComponent {
         }
       });
     }, { threshold: 0.3 });
-  
+
     skillProgressBars.forEach(el => skillObserver.observe(el));
   }
 }

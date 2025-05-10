@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 @Component({
@@ -9,6 +9,13 @@ import { RouterModule } from '@angular/router';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
+ ChangeLang(lang: any) {
+  const selectedLanguage = lang.target.value;
+  localStorage.setItem('lang' ,selectedLanguage);
+  }
+
+
+
 
   @ViewChild('canvas', { static: true }) canvasRef!: ElementRef<HTMLCanvasElement>;
   private ctx!: CanvasRenderingContext2D;
@@ -79,7 +86,6 @@ export class HeaderComponent {
   }
 }
 
-// Particle class (TS version)
 class Particle {
   x: number;
   y: number;
@@ -111,4 +117,5 @@ class Particle {
     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
     ctx.fill();
   }
+
 }
