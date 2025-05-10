@@ -1,262 +1,278 @@
+$primary: #6366f1;
+$primary-dark: #4f46e5;
+$primary-light: #a5b4fc;
+$secondary: #1e293b;
+$accent: #f43f5e;
+$light: #f8fafc;
+$dark: #0f172a;
+$gray: #94a3b8;
+$font-main: 'Poppins', sans-serif;
+
+$gradient-primary: linear-gradient(135deg, $primary, $primary-dark);
+$gradient-dark: linear-gradient(135deg, darken($dark, 5%), darken($secondary, 8%));
+$transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+
 .projects {
-    background: var(--light);
-    padding: 5rem 0;
-    overflow: hidden;
-    position: relative;
-    
-    .container {
-      position: relative;
-      z-index: 2;
-    }
-  }
+  position: relative;
+  background: $gradient-dark;
+  padding: 8rem 0;
+  overflow: hidden;
+  z-index: 1;
+  clip-path: polygon(0 5%, 100% 0, 100% 95%, 0 100%);
   
-  .animated-circle {
+  &::before {
+    content: '';
     position: absolute;
-    border-radius: 50%;
-    background: rgba(var(--primary-rgb), 0.03);
-    filter: blur(20px);
-    z-index: 0;
-    
-    &.circle-1 {
-      width: 300px;
-      height: 300px;
-      top: -50px;
-      left: -100px;
-      animation: float 15s infinite ease-in-out;
-    }
-    
-    &.circle-2 {
-      width: 200px;
-      height: 200px;
-      bottom: -30px;
-      right: -50px;
-      animation: float 18s 2s infinite ease-in-out reverse;
-    }
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+      radial-gradient(circle at 70% 20%, rgba($primary, 0.15) 0%, transparent 25%),
+      radial-gradient(circle at 30% 80%, rgba($accent, 0.15) 0%, transparent 25%);
+    z-index: -1;
+    animation: gradientFlow 20s ease infinite;
+    background-size: 200% 200%;
   }
   
-  .animated-line {
+  &::after {
+    content: '';
     position: absolute;
-    background: linear-gradient(90deg, transparent, var(--primary-light), transparent);
-    height: 1px;
-    z-index: 0;
-    
-    &.line-1 {
-      width: 150px;
-      top: 20%;
-      left: -50px;
-      transform: rotate(45deg);
-      animation: lineFlow 12s infinite linear;
-      opacity: 0.3;
-    }
-    
-    &.line-2 {
-      width: 200px;
-      bottom: 15%;
-      right: -70px;
-      transform: rotate(-20deg);
-      animation: lineFlow 15s 3s infinite linear reverse;
-      opacity: 0.2;
-    }
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+      linear-gradient(45deg, rgba($light, 0.03) 1px, transparent 1px),
+      linear-gradient(-45deg, rgba($light, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    z-index: -1;
   }
   
-  .section-title {
-    font-size: 2.5rem;
-    text-align: center;
-    margin-bottom: 3rem;
-    color: var(--dark);
+  .container {
     position: relative;
-    font-weight: 700;
-    z-index: 1;
-    
-    &::after {
-      content: '';
-      position: absolute;
-      bottom: -0.75rem;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 5rem;
-      height: 0.25rem;
-      background: var(--primary);
-      border-radius: 1rem;
-      animation: pulse 2s infinite ease-in-out;
-    }
+    z-index: 2;
+  }
+}
+
+.animated-circle {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba($primary-light, 0.15);
+  filter: blur(30px);
+  z-index: 0;
+  
+  &.circle-1 {
+    width: 300px;
+    height: 300px;
+    top: -50px;
+    left: -100px;
+    animation: float 15s infinite ease-in-out;
   }
   
-  .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(22rem, 1fr));
-    gap: 2.5rem;
-    position: relative;
-    z-index: 1;
+  &.circle-2 {
+    width: 200px;
+    height: 200px;
+    bottom: -30px;
+    right: -50px;
+    background: rgba($accent, 0.1);
+    animation: float 18s 2s infinite ease-in-out reverse;
+  }
+}
+
+.animated-line {
+  position: absolute;
+  background: linear-gradient(90deg, transparent, rgba($primary-light, 0.3), transparent);
+  height: 1px;
+  z-index: 0;
+  
+  &.line-1 {
+    width: 150px;
+    top: 20%;
+    left: -50px;
+    transform: rotate(45deg);
+    animation: lineFlow 12s infinite linear;
+    opacity: 0.3;
   }
   
-  .project-card {
-    background: white;
-    border-radius: 0.75rem;
-    overflow: hidden;
-    box-shadow: var(--shadow);
-    transition: var(--transition);
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    border: 1px solid rgba(var(--primary-rgb), 0.1);
+  &.line-2 {
+    width: 200px;
+    bottom: 15%;
+    right: -70px;
+    transform: rotate(-20deg);
+    animation: lineFlow 15s 3s infinite linear reverse;
+    opacity: 0.2;
+  }
+}
+
+.section-title {
+  text-align: center;
+  font-size: 3rem;
+  margin-bottom: 4rem;
+  color: $light;
+  text-shadow: 0 2px 10px rgba($primary, 0.3);
+  position: relative;
+  
+  &::after {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 4px;
+    background: $gradient-primary;
+    margin: 1.5rem auto 0;
+    border-radius: 2px;
+    box-shadow: 0 0 15px rgba($primary, 0.5);
+    animation: pulse 2s infinite ease-in-out;
+  }
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(22rem, 1fr));
+  gap: 2.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.project-card {
+  background: rgba($dark, 0.5);
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.2),
+    inset 0 0 0 1px rgba($light, 0.1);
+  transition: $transition;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid rgba($light, 0.1);
+  border-left: 1px solid rgba($light, 0.1);
+  
+  &:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 
+      0 15px 30px rgba(0, 0, 0, 0.3),
+      0 0 0 1px rgba($light, 0.1),
+      0 0 20px rgba($primary, 0.3);
+    border-color: rgba($primary, 0.3);
     
-    &:hover {
-      transform: translateY(-0.5rem);
-      box-shadow: var(--shadow-lg);
-      
-      .project-img {
-        transform: scale(1.05);
-      }
-      
-      .corner-accent {
-        width: 60px;
-        height: 60px;
-        opacity: 0.8;
-      }
-      
-      .floating-dots .dot {
-        transform: translateY(-5px);
-      }
-      
-      .arrow-icon {
-        transform: translateX(0.25rem);
-      }
+    
+    .project-img {
+      transform: scale(1.05);
     }
     
     .corner-accent {
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 40px;
-      height: 40px;
-      background: linear-gradient(135deg, var(--primary), transparent 70%);
-      clip-path: polygon(0 0, 100% 0, 100% 100%);
-      opacity: 0.5;
-      transition: all 0.4s ease;
-      z-index: 2;
+      width: 60px;
+      height: 60px;
+      opacity: 0.8;
     }
     
-    .image-container {
-      overflow: hidden;
-      height: 200px;
+    .floating-dots .dot {
+      transform: translateY(-10px);
+      background: $primary-light;
+    }
+    
+    .arrow-icon {
+      transform: translateX(5px);
+    }
+    
+    h3::after {
       width: 100%;
+    }
+  }
+  
+  .corner-accent {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, $primary, transparent 70%);
+    clip-path: polygon(0 0, 100% 0, 100% 100%);
+    opacity: 0.5;
+    transition: all 0.4s ease;
+    z-index: 2;
+  }
+  
+  .image-container {
+    overflow: hidden;
+    height: 200px;
+    width: 100%;
+    position: relative;
+  }
+  
+  .project-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    transition: $transition;
+  }
+  
+  .image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, 
+      rgba($dark, 0.3) 0%, 
+      rgba($dark, 0.1) 50%,
+      rgba($primary-dark, 0.05) 100%);
+    z-index: 1;
+  }
+  
+  .project-info {
+    padding: 1.75rem;
+    position: relative;
+    z-index: 2;
+    
+    h3 {
+      margin-bottom: 0.75rem;
+      color: $light;
+      font-weight: 600;
+      font-size: 1.25rem;
       position: relative;
-    }
-    
-    .project-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: top;
-      transition: var(--transition);
-    }
-    
-    .image-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 100%);
-      z-index: 1;
-    }
-    
-    .project-info {
-      padding: 1.75rem;
-      position: relative;
-      z-index: 2;
+      display: inline-block;
       
-      h3 {
-        margin-bottom: 0.75rem;
-        color: var(--dark);
-        font-weight: 600;
-        font-size: 1.25rem;
-        position: relative;
-        display: inline-block;
-        
-        &::after {
-          content: '';
-          position: absolute;
-          bottom: -3px;
-          left: 0;
-          width: 0;
-          height: 2px;
-          background: var(--primary);
-          transition: width 0.3s ease;
-        }
-      }
-      
-      &:hover h3::after {
-        width: 100%;
-      }
-      
-      p {
-        margin-bottom: 1.25rem;
-        color: var(--secondary);
-        line-height: 1.6;
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -3px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: $gradient-primary;
+        transition: width 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+        box-shadow: 0 0 10px rgba($primary, 0.5);
       }
     }
     
-    .project-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 1.5rem;
-      
-      .tag {
-        background: var(--primary-light);
-        padding: 0.35rem 0.85rem;
-        border-radius: 2rem;
-        font-size: 0.75rem;
-        font-weight: 500;
-        color: var(--primary-dark);
-        transition: var(--transition);
-        position: relative;
-        overflow: hidden;
-        
-        &::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: -100%;
-          width: 100%;
-          height: 100%;
-          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-          transition: 0.5s;
-        }
-        
-        &:hover {
-          background: var(--primary);
-          color: white;
-          transform: translateY(-0.1rem);
-          
-          &::before {
-            left: 100%;
-          }
-        }
-      }
+    p {
+      margin-bottom: 1.25rem;
+      color: rgba($light, 0.85);
+      line-height: 1.6;
     }
+  }
+  
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
     
-    .project-links {
-      display: flex;
-      gap: 1rem;
-    }
-    
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: var(--primary);
-      color: white;
-      padding: 0.75rem 1.5rem;
-      border-radius: 0.5rem;
+    .tag {
+      background: rgba($dark, 0.6);
+      backdrop-filter: blur(5px);
+      padding: 0.35rem 0.85rem;
+      border-radius: 2rem;
+      font-size: 0.75rem;
       font-weight: 500;
-      text-decoration: none;
-      transition: var(--transition);
-      overflow: hidden;
+      color: $primary-light;
+      transition: $transition;
       position: relative;
-      z-index: 1;
+      overflow: hidden;
+      border: 1px solid rgba($primary-light, 0.2);
       
       &::before {
         content: '';
@@ -265,128 +281,245 @@
         left: -100%;
         width: 100%;
         height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        background: linear-gradient(90deg, transparent, rgba($light, 0.2), transparent);
         transition: 0.5s;
-        z-index: -1;
       }
       
       &:hover {
-        background: var(--primary-dark);
-        transform: translateY(-0.15rem);
-        box-shadow: var(--shadow-md);
+        background: rgba($primary, 0.3);
+        color: $light;
+        transform: translateY(-3px);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
         
         &::before {
           left: 100%;
         }
       }
     }
+  }
+  
+  .project-links {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba($dark, 0.6);
+    backdrop-filter: blur(5px);
+    color: $light;
+    padding: 0.75rem 1.5rem;
+    border-radius: 2rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: $transition;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    border: 1px solid rgba($light, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     
-    .arrow-icon {
-      width: 1rem;
-      height: 1rem;
-      stroke: currentColor;
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      fill: none;
-      transition: transform 0.3s ease;
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: $gradient-primary;
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      border-radius: 2rem;
     }
     
-    .floating-dots {
-      position: absolute;
-      bottom: 1rem;
-      left: 1rem;
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: 
+        0 10px 20px rgba(0, 0, 0, 0.2),
+        0 0 0 1px rgba($light, 0.1),
+        0 0 20px rgba($primary, 0.3);
       
-      .dot {
-        display: block;
-        width: 6px;
-        height: 6px;
-        background: var(--primary-light);
-        border-radius: 50%;
-        margin-bottom: 0.5rem;
-        transition: all 0.4s ease;
-        opacity: 0.7;
-        
-        &.dot-1 {
-          animation: floatDot 4s infinite ease-in-out;
-        }
-        &.dot-2 {
-          animation: floatDot 5s 0.5s infinite ease-in-out;
-        }
-        &.dot-3 {
-          animation: floatDot 6s 1s infinite ease-in-out;
-        }
+      &::before {
+        opacity: 1;
+      }
+      
+      .arrow-icon {
+        transform: translateX(5px);
+      }
+    }
+    
+    &:active {
+      transform: translateY(1px);
+    }
+  }
+  
+  .arrow-icon {
+    width: 1rem;
+    height: 1rem;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+    transition: transform 0.3s ease;
+  }
+  
+  .floating-dots {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    z-index: 2;
+    
+    .dot {
+      display: block;
+      width: 6px;
+      height: 6px;
+      background: rgba($light, 0.5);
+      border-radius: 50%;
+      margin-bottom: 0.5rem;
+      transition: all 0.4s ease;
+      
+      &.dot-1 {
+        animation: floatDot 4s infinite ease-in-out;
+      }
+      &.dot-2 {
+        animation: floatDot 5s 0.5s infinite ease-in-out;
+      }
+      &.dot-3 {
+        animation: floatDot 6s 1s infinite ease-in-out;
       }
     }
   }
+}
+
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-25px) rotate(3deg);
+  }
+}
+
+@keyframes lineFlow {
+  0% {
+    transform: rotate(45deg) translateX(-100px);
+    opacity: 0;
+  }
+  20%, 80% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: rotate(45deg) translateX(300px);
+    opacity: 0;
+  }
+}
+
+@keyframes floatDot {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scaleX(1.1);
+    opacity: 0.8;
+  }
+}
+
+.floating-particles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  z-index: 0;
   
-  @keyframes float {
-    0%, 100% {
-      transform: translateY(0) rotate(0deg);
+  span {
+    position: absolute;
+    display: block;
+    width: 2px;
+    height: 2px;
+    background: rgba($light, 0.5);
+    border-radius: 50%;
+    animation: floatParticles linear infinite;
+    
+    @for $i from 1 through 20 {
+      &:nth-child(#{$i}) {
+        top: random(100) + '%';
+        left: random(100) + '%';
+        width: random(3) + 2 + px;
+        height: width;
+        animation-duration: random(30) + 20 + s;
+        animation-delay: random(20) + s;
+        opacity: random(100) / 100;
+      }
     }
-    50% {
-      transform: translateY(-1rem) rotate(2deg);
+  }
+}
+
+@keyframes floatParticles {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  100% {
+    transform: translateY(-100px) rotate(360deg);
+  }
+}
+
+@media (max-width: 768px) {
+  .projects {
+    padding: 6rem 0;
+    
+    .section-title {
+      font-size: 2.5rem;
     }
   }
   
-  @keyframes lineFlow {
-    0% {
-      transform: rotate(45deg) translateX(-100px);
-      opacity: 0;
-    }
-    20%, 80% {
-      opacity: 0.3;
-    }
-    100% {
-      transform: rotate(45deg) translateX(100px);
-      opacity: 0;
-    }
+  .projects-grid {
+    grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+    gap: 2rem;
   }
-  
-  @keyframes floatDot {
-    0%, 100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-8px);
-    }
-  }
-  
-  @keyframes pulse {
-    0%, 100% {
-      transform: translateX(-50%) scaleX(1);
-    }
-    50% {
-      transform: translateX(-50%) scaleX(1.1);
-    }
-  }
-  
-  @media (max-width: 768px) {
-    .projects-grid {
-      grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
-      gap: 2rem;
-    }
+}
+
+@media (max-width: 480px) {
+  .projects {
+    padding: 4rem 0;
     
     .section-title {
       font-size: 2rem;
     }
-    
-    .animated-circle,
-    .animated-line {
-      display: none;
-    }
   }
   
-  @media (max-width: 480px) {
-    .projects-grid {
-      grid-template-columns: 1fr;
-    }
-    
-    .project-card .image-container {
-      height: 12rem;
-    }
-    
-    .floating-dots {
-      display: none;
-    }
+  .projects-grid {
+    grid-template-columns: 1fr;
   }
+  
+  .project-card .image-container {
+    height: 180px;
+  }
+}
