@@ -19,9 +19,9 @@ export class ContactComponent {
 
   con = {
     title: 'Contact',
-    email: 'kuljanisaba@gmial.com',
+    email: 'kuljanisaba@gmail.com',
     location: 'Georgia',
-    phone: '+995 592 12 82 83',
+    phone: '+995 599 80 29 70',
     workingHours: 'Full time',
     socialLinks: [
       {
