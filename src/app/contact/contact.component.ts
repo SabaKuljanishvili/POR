@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import emailjs from 'emailjs-com';
 import { FormsModule } from '@angular/forms';
 import { RouterLink, RouterModule } from '@angular/router';
 import { AlertService } from '../services/alert.service';
 import { AlertComponent } from '../alert/alert.component';
+import { LanguageService } from '../services/language.service';
 
 @Component({
   selector: 'app-contact',
@@ -16,7 +17,7 @@ import { AlertComponent } from '../alert/alert.component';
 export class ContactComponent {
   constructor(private alertService: AlertService) {}
 
-  contactData = {
+  con = {
     title: 'Contact',
     email: 'kuljanisaba@gmial.com',
     location: 'Georgia',
@@ -35,6 +36,42 @@ export class ContactComponent {
       }
     ]
   };
+
+  private langService = inject(LanguageService);
+  lang = this.langService.currentLang;
+
+  text = computed(() => {
+    return this.lang() === 'en'
+      ? {
+              title: 'Contact',
+            email: 'Email',
+            location: 'Location',
+            locationn: 'Georgia',
+            phone: 'Phone',
+            workingHours: 'Working Hours',
+            socialMedia: 'Social Media',
+            formName: 'Full Name',
+            formEmail: 'Email Address',
+            formSubject: 'Subject',
+            formMessage: 'Your Message',
+            formButton: 'Send Message',
+          }
+        : {
+
+                      title: 'კონტაქტი',
+            email: 'ელ.ფოსტა',
+            location: 'მდებარეობა',
+            locationn: 'საქართველო',
+            phone: 'ტელეფონი',
+            workingHours: 'სამუშაო საათები',
+            socialMedia: 'სოციალური ქსელები',
+            formName: 'სრული სახელი',
+            formEmail: 'ელ.ფოსტის მისამართი',
+            formSubject: 'თემა',
+            formMessage: 'შეტყობინება',
+            formButton: 'შეტყობინების გაგზავნა',
+          };
+  });
 
   formData = {
     name: '',

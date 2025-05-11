@@ -1,10 +1,10 @@
 <section id="about" class="about reveal">
     <div class="container">
-      <h2 class="section-title">About Me</h2>
+      <h2 class="section-title">{{about().aboutMe}}</h2>
       <div class="about-content">
         <div class="about-text">
-          <h2>{{ about.name }}</h2>
-          <p *ngFor="let paragraph of about.paragraphs">{{ paragraph }}</p>
+          <h2>{{ about().name }}</h2>
+          <p *ngFor="let p of about().paragraphs">{{ p }}</p>
         </div>
   
         <div class="skills-chart">
@@ -29,7 +29,7 @@
   
   <section class="tech-stack reveal">
     <div class="container">
-      <h2 class="section-title">Tech Stack</h2>
+      <h2 class="section-title">{{about().techStack}}</h2>
       <div class="tech-grid">
         <div class="tech-item" *ngFor="let tech of techStack">
           <i [class]="tech.iconClass + ' tech-icon'"></i>

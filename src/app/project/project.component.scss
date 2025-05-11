@@ -494,6 +494,8 @@ $transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 @media (max-width: 768px) {
   .projects {
     padding: 6rem 0;
+      clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%);
+    
     
     .section-title {
       font-size: 2.5rem;

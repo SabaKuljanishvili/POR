@@ -1,5 +1,6 @@
-import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+import { Component, computed, ElementRef, HostListener, inject, OnInit, ViewChild } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { LanguageService } from '../services/language.service';
 
 @Component({
   selector: 'app-header',
@@ -9,11 +10,30 @@ import { RouterModule } from '@angular/router';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
- ChangeLang(lang: any) {
-  const selectedLanguage = lang.target.value;
-  localStorage.setItem('lang' ,selectedLanguage);
+ private langService = inject(LanguageService);
+  lang = this.langService.currentLang;
+
+  switchLanguage() {
+    this.langService.switchLang();
   }
 
+  texts = computed(() => {
+    return this.lang() === 'en'
+      ? {
+          title: 'Saba Kuljanishvili',
+          subtitle: 'Georgian Web Developer',
+          viewWork: 'View My Work',
+          contact: 'Contact Me',
+          switchLabel: 'ქარ'
+        }
+      : {
+          title: 'საბა ყულჯანიშვილი',
+          subtitle: 'ქართველი ვებდეველოპერი',
+          viewWork: 'ნახე ჩემი ნამუშევრები',
+          contact: 'დამიკავშირდი',
+          switchLabel: 'Eng'
+        };
+  });
 
 
 
