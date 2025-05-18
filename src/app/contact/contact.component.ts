@@ -33,6 +33,11 @@ export class ContactComponent {
         name: 'GitHub',
         url: 'https://github.com/SabaKuljanishvili',
         icon: 'fab fa-github'
+      },
+      {
+        name: 'LinkedIn',
+        url: 'https://www.linkedin.com/in/saba-kuljanishvili-b84948247/',
+        icon: 'fab fa-linkedin'
       }
     ]
   };
